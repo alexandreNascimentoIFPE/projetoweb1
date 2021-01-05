@@ -1,0 +1,1 @@
+Para rodar o código SQL corretamente, crie um banco de dados no SGBD com o nome "projetoweb"
