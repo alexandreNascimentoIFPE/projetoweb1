@@ -1,7 +1,7 @@
 <?php
 include_once '../../funcoes/funcoes.php';
 $acaoListarLivro = new Biblioteca();
-$arrayLivros = $acaoListarLivro ->livros();
+$arrayLivros = $acaoListarLivro ->livrosDisponiveisBli();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +14,6 @@ $arrayLivros = $acaoListarLivro ->livros();
 </head>
 <body>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<select name="filtro" id="filtro">
-  <option value="isbn">ISBN</option>
-  <option value="nome">Nome do Livro</option>
-  <option value="categoria">Categoria</option>
-  <option value="autor">Autor</option>
-</select>
-<input type="text" id="barra-pesquisa">
-<input type="image" src="../../img/search.png" alt="" style="width:25px; height:25px;">
 <br><br>
 <table id="customers">
   <tr>
@@ -32,6 +24,7 @@ $arrayLivros = $acaoListarLivro ->livros();
   </tr>
   
   <?php
+  
   for ($i=0; $i < count($arrayLivros["retorno"]); $i++) { 
     echo "
       <tr>

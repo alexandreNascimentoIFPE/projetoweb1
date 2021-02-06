@@ -84,7 +84,8 @@ class Biblioteca
 		}
 	}
 	
-	public function livros($pesquisa = '')
+
+	public function livrosDisponiveisBli()
     {
         try{
 			$mySQL = new MySQL;
@@ -98,10 +99,49 @@ class Biblioteca
 			$arrayConfig = array();
 			while ($inf = mysqli_fetch_array($exe))
 			{
-				$arrayConfig[$x]["id_livro"]       = $inf["id_livro"];
-				$arrayConfig[$x]["isbn"]       = $inf["isbn"];
+				$arrayConfig[$x]["id_livro"]           = $inf["id_livro"];
+				$arrayConfig[$x]["isbn"]               = $inf["isbn"];
 				$arrayConfig[$x]["nome_livro"] 	       = $inf["nome_livro"];
-                $arrayConfig[$x]["autor"] 	       = $inf["autor"];
+                $arrayConfig[$x]["autor"] 	           = $inf["autor"];
+                $arrayConfig[$x]["categoria"] 	       = $inf["categoria"];
+				$x++;
+
+			}
+
+			$mySQL->closeConnMySQL();
+			$arrayRetorno["status"]   = "ok";
+			$arrayRetorno["mensagem"] = "ok.";
+			$arrayRetorno["retorno"]  = $arrayConfig;
+
+			return $arrayRetorno;
+
+		}catch( Exception $e ){
+			$arrayRetorno["status"]   = "erro";
+			$arrayRetorno["mensagem"] = $e->getMessage();
+			$arrayRetorno["retorno"]  = "";
+			return $arrayRetorno;
+		}
+	}
+
+
+	public function livros()
+    {
+        try{
+			$mySQL = new MySQL;
+			$mySQL->connMySQL();
+			
+			$sql = "SELECT * FROM livro WHERE id_livro NOT IN (SELECT id_livro FROM aluguel_livro WHERE confirmado = 0)";
+			
+			$exe = $mySQL->runQuery($sql);
+
+			$x = 0;
+			$arrayConfig = array();
+			while ($inf = mysqli_fetch_array($exe))
+			{
+				$arrayConfig[$x]["id_livro"]           = $inf["id_livro"];
+				$arrayConfig[$x]["isbn"]               = $inf["isbn"];
+				$arrayConfig[$x]["nome_livro"] 	       = $inf["nome_livro"];
+                $arrayConfig[$x]["autor"] 	           = $inf["autor"];
                 $arrayConfig[$x]["categoria"] 	       = $inf["categoria"];
 				$x++;
 
@@ -153,7 +193,8 @@ class Biblioteca
 					FROM livro AS l
 					INNER JOIN aluguel_livro AS al
 					ON al.id_livro = l.id_livro 
-					WHERE al.id_aluno = '{$id_aluno}'";
+					WHERE al.id_aluno = '{$id_aluno}'
+					AND al.confirmado = 1";
 			
 			$exe = $mySQL->runQuery($sql);
 
@@ -281,7 +322,8 @@ class Biblioteca
 					INNER JOIN aluguel_livro AS al
 					ON al.id_livro = l.id_livro 
 					INNER JOIN usuario AS u
-					ON u.id_usuario = al.id_aluno";
+					ON u.id_usuario = al.id_aluno
+					WHERE al.confirmado = 1";
 			
 			$exe = $mySQL->runQuery($sql);
 
@@ -307,6 +349,172 @@ class Biblioteca
 			$arrayRetorno["retorno"]  = $arrayConfig;
 
 			return $arrayRetorno;
+
+		}catch( Exception $e ){
+			$arrayRetorno["status"]   = "erro";
+			$arrayRetorno["mensagem"] = $e->getMessage();
+			$arrayRetorno["retorno"]  = "";
+			return $arrayRetorno;
+		}
+	}
+
+	public function listarDestinatariosAlunos()
+    {
+        try{
+			$mySQL = new MySQL;
+			$mySQL->connMySQL();
+			
+			$sql = "SELECT *
+					FROM usuario
+					WHERE funcao = 'aluno'";
+			
+			$exe = $mySQL->runQuery($sql);
+
+			$x = 0;
+			$arrayConfig = array();
+			while ($inf = mysqli_fetch_array($exe))
+			{
+				$arrayConfig[$x]["email"] 	       = $inf["email"];
+				$arrayConfig[$x]["nome"] 	       = $inf["nome"];
+				$x++;
+
+			}
+
+			$mySQL->closeConnMySQL();
+			$arrayRetorno["status"]   = "ok";
+			$arrayRetorno["mensagem"] = "ok.";
+			$arrayRetorno["retorno"]  = $arrayConfig;
+
+			return $arrayRetorno;
+
+		}catch( Exception $e ){
+			$arrayRetorno["status"]   = "erro";
+			$arrayRetorno["mensagem"] = $e->getMessage();
+			$arrayRetorno["retorno"]  = "";
+			return $arrayRetorno;
+		}
+	}
+
+	public function listarDestinatariosBibliotecario()
+    {
+        try{
+			$mySQL = new MySQL;
+			$mySQL->connMySQL();
+			
+			$sql = "SELECT *
+					FROM usuario
+					WHERE funcao = 'bibliotecario'";
+			
+			$exe = $mySQL->runQuery($sql);
+
+			$x = 0;
+			$arrayConfig = array();
+			while ($inf = mysqli_fetch_array($exe))
+			{
+				$arrayConfig[$x]["email"] 	       = $inf["email"];
+				$arrayConfig[$x]["nome"] 	       = $inf["nome"];
+				$x++;
+
+			}
+
+			$mySQL->closeConnMySQL();
+			$arrayRetorno["status"]   = "ok";
+			$arrayRetorno["mensagem"] = "ok.";
+			$arrayRetorno["retorno"]  = $arrayConfig;
+
+			return $arrayRetorno;
+
+		}catch( Exception $e ){
+			$arrayRetorno["status"]   = "erro";
+			$arrayRetorno["mensagem"] = $e->getMessage();
+			$arrayRetorno["retorno"]  = "";
+			return $arrayRetorno;
+		}
+	}
+
+	public function livroSolicitado()
+    {
+        try{
+			$mySQL = new MySQL;
+			$mySQL->connMySQL();
+			
+			$sql = "SELECT u.nome, l.id_livro, l.isbn, l.nome_livro, l.autor, l.categoria, al.data_aluguel, al.data_vencimento, al.confirmado, al.id_aluguel 
+					FROM livro AS l
+					INNER JOIN aluguel_livro AS al
+					ON al.id_livro = l.id_livro 
+					INNER JOIN usuario AS u
+					ON u.id_usuario = al.id_aluno
+					WHERE al.confirmado = 0";
+			
+			$exe = $mySQL->runQuery($sql);
+
+			$x = 0;
+			$arrayConfig = array();
+			while ($inf = mysqli_fetch_array($exe))
+			{
+				$arrayConfig[$x]["nome"]       = $inf["nome"];
+				$arrayConfig[$x]["id_livro"]       = $inf["id_livro"];
+				$arrayConfig[$x]["isbn"] 	       = $inf["isbn"];
+                $arrayConfig[$x]["nome_livro"] 	       = $inf["nome_livro"];
+                $arrayConfig[$x]["autor"] 	       = $inf["autor"];
+                $arrayConfig[$x]["categoria"] 	       = $inf["categoria"];
+				$arrayConfig[$x]["data_aluguel"] 	       = $inf["data_aluguel"];
+				$arrayConfig[$x]["data_vencimento"] 	       = $inf["data_vencimento"];
+				$arrayConfig[$x]["confirmado"] 	       = $inf["confirmado"];
+				$arrayConfig[$x]["id_aluguel"] 	       = $inf["id_aluguel"];
+				$x++;
+
+			}
+
+			$mySQL->closeConnMySQL();
+			$arrayRetorno["status"]   = "ok";
+			$arrayRetorno["mensagem"] = "ok.";
+			$arrayRetorno["retorno"]  = $arrayConfig;
+
+			return $arrayRetorno;
+
+		}catch( Exception $e ){
+			$arrayRetorno["status"]   = "erro";
+			$arrayRetorno["mensagem"] = $e->getMessage();
+			$arrayRetorno["retorno"]  = "";
+			return $arrayRetorno;
+		}
+	}
+
+	public function confirmarLivro($id_aluguel)
+    {
+        try{
+			$mySQL = new MySQL;
+			$mySQL->connMySQL();
+			
+			$sql = "UPDATE aluguel_livro
+			SET confirmado = 1
+			WHERE id_aluguel = '{$id_aluguel}'";
+			
+			$exe = $mySQL->runQuery($sql);
+
+			
+
+		}catch( Exception $e ){
+			$arrayRetorno["status"]   = "erro";
+			$arrayRetorno["mensagem"] = $e->getMessage();
+			$arrayRetorno["retorno"]  = "";
+			return $arrayRetorno;
+		}
+	}
+
+	public function cancelarLivro($id_aluguel)
+    {
+        try{
+			$mySQL = new MySQL;
+			$mySQL->connMySQL();
+			
+			$sql = "DELETE FROM aluguel_livro
+					WHERE id_aluguel = '{$id_aluguel}'";
+			
+			$exe = $mySQL->runQuery($sql);
+
+			
 
 		}catch( Exception $e ){
 			$arrayRetorno["status"]   = "erro";

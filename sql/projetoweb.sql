@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Jan-2021 às 05:55
+-- Tempo de geração: 06-Fev-2021 às 22:11
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.2.34
 
@@ -32,8 +32,16 @@ CREATE TABLE `aluguel_livro` (
   `id_aluno` int(11) NOT NULL,
   `id_livro` int(11) NOT NULL,
   `data_aluguel` datetime NOT NULL,
-  `data_vencimento` datetime NOT NULL
+  `data_vencimento` datetime NOT NULL,
+  `confirmado` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `aluguel_livro`
+--
+
+INSERT INTO `aluguel_livro` (`id_aluguel`, `id_aluno`, `id_livro`, `data_aluguel`, `data_vencimento`, `confirmado`) VALUES
+(12, 8, 6, '2021-02-06 22:04:27', '2021-02-13 22:04:27', 1);
 
 -- --------------------------------------------------------
 
@@ -49,6 +57,13 @@ CREATE TABLE `livro` (
   `categoria` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `livro`
+--
+
+INSERT INTO `livro` (`id_livro`, `isbn`, `nome_livro`, `autor`, `categoria`) VALUES
+(6, '123', 'qwe', 'qwe', 'qwe');
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +78,18 @@ CREATE TABLE `usuario` (
   `funcao` varchar(150) NOT NULL,
   `sexo` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `senha`, `funcao`, `sexo`) VALUES
+(7, 'Alexandre Nascimento', 'alexandreti123456@gmail.com', '123', 'bibliotecario', 'm'),
+(8, 'Alexandre Nascimento', 'alexandre.nascimentoti@gmail.com', '123', 'aluno', 'm'),
+(9, 'lolzeiro', 'alexandre.nascimento@persyos.com.br', '123', 'bibliotecario', 'm'),
+(10, 'Sabrina Elisama', 'sabrina@gmail.com', '123', 'bibliotecario', 'f'),
+(11, 'Flávio Neves', 'flavio@gmail.com', '123', 'bibliotecario', 'm'),
+(12, 'Alexandre Nascimento', 'lolzeirorecife@gmail.com', '123', 'aluno', 'm');
 
 --
 -- Índices para tabelas despejadas
@@ -94,19 +121,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `aluguel_livro`
 --
 ALTER TABLE `aluguel_livro`
-  MODIFY `id_aluguel` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aluguel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `livro`
 --
 ALTER TABLE `livro`
-  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
