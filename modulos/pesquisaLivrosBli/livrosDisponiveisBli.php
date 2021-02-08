@@ -13,8 +13,8 @@ $arrayLivros = $acaoListarLivro ->livrosDisponiveisBli();
 
 </head>
 <body>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<br><br>
+&nbsp;
+
 <table id="customers">
   <tr>
     <th>ISBN</th>

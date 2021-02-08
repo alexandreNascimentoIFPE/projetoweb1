@@ -5,21 +5,21 @@
 <link rel="stylesheet" href="../../estilos/menu.css">
 <script src="../../js/home.js"></script>
 <script src="../../js/jquery.js"></script>
+<link rel="stylesheet" type="text/css"  href="estilo.css" />
 
 </head>
 <body>
-
-<br><br><br><br><br><br><br>
 <div style="position: relative; left: -50%;">
-<strong>ISBN: &emsp;&emsp;&emsp;&nbsp;&nbsp;</strong><input type="text" id='isbn' style="height: 26px; border: 2px solid grey border-radius: 5px;">
-<br>
-<strong>Nome do livro :</strong><input type="text" id='nome-livro' style="height: 26px; border: 2px solid grey border-radius: 5px;">
-<br>
-<strong>Autor :&emsp;&emsp;&emsp;&nbsp;&nbsp;</strong><input type="text" id='autor' style="height: 26px; border: 2px solid grey border-radius: 5px;">
-<br>
-<strong>categoria:&emsp;&emsp;</strong> <input type="text" id='categoria' style="height: 26px; border: 2px solid grey border-radius: 5px;">
-<br>
-&emsp;&emsp;&emsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<button onclick="cadastrarLivro();">cadastrar</button>
+<center><h3>CADASTRE UM LIVRO</h3></center>
+<strong>ISBN:&emsp;&emsp;&emsp;&emsp;</strong><input type="text" id='isbn' style="height: 26px; border: 2px solid grey border-radius: 5px;">
+<br><br>
+<strong>LIVRO: &emsp;&emsp;&emsp;</strong><input type="text" id='nome-livro' style="height: 26px; border: 2px solid grey border-radius: 5px;">
+<br><br>
+<strong>AUTOR:&emsp;&emsp;&emsp;</strong><input type="text" id='autor' style="height: 26px; border: 2px solid grey border-radius: 5px;">
+<br><br>
+<strong>CATEGORIA:</strong> <input type="text" id='categoria' style="height: 26px; border: 2px solid grey border-radius: 5px;">
+<br><br><br>
+&emsp;&emsp;&emsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<button onclick="cadastrarLivro();">CADASTRAR LIVRO </button>
 </div>
 <div id="divExibir"></div>
 <script>

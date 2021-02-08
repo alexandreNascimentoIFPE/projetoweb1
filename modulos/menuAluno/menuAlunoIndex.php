@@ -13,6 +13,7 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body bgcolor="#ADD8E6">
 </head>
 <body>
 <ul name="div" id="div">
@@ -54,7 +55,7 @@
             <br>
             <br>
             <br>
-            <div id="editor" style="height: 200px;"></div>
+            <div id="editor" style="height: 400px;"></div>
             
           </div>
           <div align="center">
@@ -112,6 +113,13 @@ var toolbarOptions = [
 function entrarContato() {
   alert('Email enviado com sucesso !!!');    
 }
+
 </script>
+<center>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br>
+  <a href="http://localhost/projetoweb1-master/index.php" title='sair'>
+  <button style="background: #436EEE;" onclick="msg()"> SAIR </button>
+</center>
 </body>
 </html>

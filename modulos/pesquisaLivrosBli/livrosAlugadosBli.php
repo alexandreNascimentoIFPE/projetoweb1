@@ -13,12 +13,12 @@ $arrayLivros = $acaoListarLivro -> listarLivrosAlugados();
 
 </head>
 <body>
-    <br><br>
 <style>
     #customers{
     position: relative;
     
     right: -15%;
+    padding-top: 3%
 }
 </style>
 <table id="customers">
@@ -28,8 +28,8 @@ $arrayLivros = $acaoListarLivro -> listarLivrosAlugados();
     <th>Nome do Livro</th>
     <th>Autor</th>
     <th>Categoria</th>
-    <th>Data do aluguel</th>
-    <th>Data de devolução</th>
+    <th>Data do Aluguel</th>
+    <th>Data de Devolução</th>
   </tr>
   
   <?php

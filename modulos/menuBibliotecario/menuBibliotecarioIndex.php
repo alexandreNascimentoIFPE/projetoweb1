@@ -13,6 +13,7 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body bgcolor="#ADD8E6">
 </head>
 <body>
 <ul>
@@ -20,7 +21,7 @@
   <li><a id="livros-solicitados" onclick="getClass(this.id); livrosSolicitados(); ">Livros Solicitados</a></li>
   <li><a  id="adicionar-livro" onclick="getClass(this.id); adicionarLivros();">Adicionar livros</a></li>
   <li><a id="livros-disponiveis" onclick="getClass(this.id); livrosDisponiveis(); ">Livros disponiveis</a></li>
-  <li><a id="entrar-contato" onclick="getClass(this.id); document.getElementById('id01').style.display='block'">Entrar em contato com aluno</a></li>
+  <li><a id="entrar-contato" onclick="getClass(this.id); document.getElementById('id01').style.display='block'">Contato com Aluno</a></li>
 </ul>
 <div id="divExibir"></div>
 <script>
@@ -69,7 +70,7 @@
             </select>
             
             <br>
-            <div id="editor" style="height: 200px;"></div>
+            <div id="editor" style="height: 400px;"></div>
             
           </div>
           <br>
@@ -128,5 +129,11 @@ function entrarContato() {
   alert('Email enviado com sucesso !!!');  
 }
 </script>
+<center>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br>
+  <a href="http://localhost/projetoweb1-master/index.php" title='sair'>
+  <button style="background: #436EEE;" onclick="msg()"> SAIR </button>
+</center>
 </body>
 </html>
